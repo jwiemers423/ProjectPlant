@@ -142,7 +142,7 @@ namespace FormUI
         {
             if (e.KeyCode == Keys.End)
             {
-                ReturnToDisplay();
+                ReturnHome();
             }
         }
     }
