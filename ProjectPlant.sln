@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormUI", "Dashboard\FormUI.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ProjectPlant_Setup", "ProjectPlant_Setup\ProjectPlant_Setup.vdproj", "{A09A9C4C-39C8-4F54-A6F4-9603CF82470F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantLibrary", "PlantLibrary\PlantLibrary.csproj", "{FDA874C1-1A72-4CF5-8770-59C2D33506BD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,10 +19,6 @@ Global
 		{18B0A801-2861-4B4C-8F4D-53402CB46332}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A09A9C4C-39C8-4F54-A6F4-9603CF82470F}.Debug|Any CPU.ActiveCfg = Debug
 		{A09A9C4C-39C8-4F54-A6F4-9603CF82470F}.Release|Any CPU.ActiveCfg = Release
-		{FDA874C1-1A72-4CF5-8770-59C2D33506BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDA874C1-1A72-4CF5-8770-59C2D33506BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDA874C1-1A72-4CF5-8770-59C2D33506BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDA874C1-1A72-4CF5-8770-59C2D33506BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

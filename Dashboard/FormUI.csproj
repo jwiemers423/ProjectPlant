@@ -139,11 +139,5 @@
   <ItemGroup>
     <Content Include="ImagesAndIcons\leaf-nature-forest-brand-plant_icon-icons.com_59259 %281%29.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PlantLibrary\PlantLibrary.csproj">
-      <Project>{FDA874C1-1A72-4CF5-8770-59C2D33506BD}</Project>
-      <Name>PlantLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
