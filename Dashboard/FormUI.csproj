@@ -88,7 +88,6 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Library\Plant.cs" />
     <Compile Include="ProjectPlant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\PlantInformationDisplayForm.resx">
@@ -138,6 +137,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ImagesAndIcons\leaf-nature-forest-brand-plant_icon-icons.com_59259 %281%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Library\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PlantLibrary\PlantLibrary.csproj">
+      <Project>{efe1d95e-b8a6-4d30-87bc-ed0a1a7053b2}</Project>
+      <Name>PlantLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

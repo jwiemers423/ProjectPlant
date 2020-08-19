@@ -14,11 +14,33 @@ namespace FormUI
     public partial class PlantInformationDisplayForm : Form
     {
         public int plantId = 0;
-        public PlantInformationEditForm plantInfoForm = new PlantInformationEditForm();
+
         public PlantInformationDisplayForm()
         {
             InitializeComponent();
         }
+        
+        //Events
+        private void editPlantButton_Click(object sender, EventArgs e)
+        {
+            EditPlant();
+        }
+
+        private void homeButton_Click(object sender, EventArgs e)
+        {
+            ReturnHome();
+        }
+
+        //KeyPress Event for all textboxes
+        private void KeyPressDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.End)
+            {
+                ReturnHome();
+            }
+        }
+
+        //Methods
         public void ReturnHome()
         {
             // Closes current form and opens MainForm
@@ -29,9 +51,12 @@ namespace FormUI
             MainForm.plantSelected = false;
         }
 
-        private void editPlantButton_Click(object sender, EventArgs e)
+        public void EditPlant()
         {
             //Transfers textbox data to editer form
+
+            PlantInformationEditForm plantInfoForm = new PlantInformationEditForm();
+
             MainForm.plantSelected = true;
             plantInfoForm.deleteButton.Enabled = true;
             plantInfoForm.addPlantButton.Text = "Save Edit";
@@ -48,17 +73,6 @@ namespace FormUI
             this.Hide();
             plantInfoForm.ShowDialog();
             this.Close();
-        }
-
-        private void homeButton_Click(object sender, EventArgs e)
-        {
-            ReturnHome();
-        }
-
-        //KeyPress Event for all textboxes
-        private void KeyPressDown(object sender, KeyEventArgs e)
-        {
-            ReturnHome();
         }
     }
 }
