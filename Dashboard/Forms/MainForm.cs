@@ -28,149 +28,150 @@ namespace FormUI
             UpdateBinding();
         }
 
-        //private void UpdateBinding()
-        //{
-        //    DataAccess db = new DataAccess();
-        //    plants = db.GetPlants(searchTextBox.Text);
+        private void UpdateBinding()
+        {
+            DataAccess db = new DataAccess();
+            plants = db.GetPlants(searchTextBox.Text);
 
-        //    //Populates DGV with Plant list
-        //    plantsDataGridView.DataSource = plants;
+            //Populates DGV with Plant list
+            plantsDataGridView.DataSource = plants;
 
-        //    //hides unneeded columns from data list
-        //    plantsDataGridView.Columns[0].Visible = false;
-        //    plantsDataGridView.Columns[3].Visible = false;
-        //    plantsDataGridView.Columns[4].Visible = false;
-        //    plantsDataGridView.Columns[5].Visible = false;
-        //    plantsDataGridView.Columns[6].Visible = false;
-        //    plantsDataGridView.Columns[7].Visible = false;
+            //hides unneeded columns from data list
+            plantsDataGridView.Columns[0].Visible = false;
+            plantsDataGridView.Columns[3].Visible = false;
+            plantsDataGridView.Columns[4].Visible = false;
+            plantsDataGridView.Columns[5].Visible = false;
+            plantsDataGridView.Columns[6].Visible = false;
+            plantsDataGridView.Columns[7].Visible = false;
 
-        //    //Changes column headers so that the labels are more clear
-        //    plantsDataGridView.Columns[1].HeaderText = "Common Name:";
-        //    plantsDataGridView.Columns[2].HeaderText = "Scientific Name:";
+            //Changes column headers so that the labels are more clear
+            plantsDataGridView.Columns[1].HeaderText = "Common Name:";
+            plantsDataGridView.Columns[2].HeaderText = "Scientific Name:";
 
-        //    //Changes second column to italics and makes font slightly larger than default value
-        //    plantsDataGridView.Columns[2].DefaultCellStyle.Font = new Font("Courier New", 15, FontStyle.Italic);
-        //}
+            //Changes second column to italics and makes font slightly larger than default value
+            plantsDataGridView.Columns[2].DefaultCellStyle.Font = new Font("Courier New", 15, FontStyle.Italic);
+        }
 
-        //private void CancelSelected()
-        //{
-        //    //Clears plantInfoForm data so a clean form will be opened
-        //    plantSelected = false;
-        //    addNewButton.Text = "Add New";
-        //    plantInfoEditForm.plantId = 0;
-        //    plantInfoEditForm.commonNameTextBox.Text = plantInfoEditForm.botanicalNameTextBox.Text = plantInfoEditForm.waterRequirementTextBox.Text =
-        //        plantInfoEditForm.lightRequirementTextBox.Text = plantInfoEditForm.fertilizerRequirementTextBox.Text = plantInfoEditForm.moreInfoTextBox.Text = "";
-        //    plantInfoEditForm.plantPictureBox.Image = null;
-        //}
+        private void CancelSelected()
+        {
+            //Clears plantInfoForm data so a clean form will be opened
+            plantSelected = false;
+            addNewButton.Text = "Add New";
+            plantInfoEditForm.plantId = 0;
+            plantInfoEditForm.commonNameTextBox.Text = plantInfoEditForm.botanicalNameTextBox.Text = plantInfoEditForm.waterRequirementTextBox.Text =
+                plantInfoEditForm.lightRequirementTextBox.Text = plantInfoEditForm.fertilizerRequirementTextBox.Text = plantInfoEditForm.moreInfoTextBox.Text = "";
+            plantInfoEditForm.plantPictureBox.Image = null;
+        }
 
-        ////Commands for "up" keypress. Moves column selection up one
-        //private void moveUp()
-        //{
-        //    if (plantsDataGridView.RowCount > 0)
-        //    {
-        //        if (plantsDataGridView.SelectedRows.Count > 0)
-        //        {
-        //            int rowCount = plantsDataGridView.Rows.Count;
-        //            int index = plantsDataGridView.SelectedCells[0].OwningRow.Index;
+        //Commands for "up" keypress. Moves column selection up one
+        private void moveUp()
+        {
+            if (plantsDataGridView.RowCount > 0)
+            {
+                if (plantsDataGridView.SelectedRows.Count > 0)
+                {
+                    int rowCount = plantsDataGridView.Rows.Count;
+                    int index = plantsDataGridView.SelectedCells[0].OwningRow.Index;
 
-        //            if (index == 0)
-        //            {
-        //                return;
-        //            }
-        //            DataGridViewRowCollection rows = plantsDataGridView.Rows;
+                    if (index == 0)
+                    {
+                        return;
+                    }
+                    DataGridViewRowCollection rows = plantsDataGridView.Rows;
 
-        //            // remove the previous row and add it behind the selected row.
-        //            DataGridViewRow prevRow = rows[index - 1];
-        //            rows.Remove(prevRow);
-        //            prevRow.Frozen = false;
-        //            rows.Insert(index, prevRow);
-        //            plantsDataGridView.ClearSelection();
-        //            plantsDataGridView.Rows[index - 1].Selected = true;
-        //        }
-        //    }
-        //}
+                    // remove the previous row and add it behind the selected row.
+                    DataGridViewRow prevRow = rows[index - 1];
+                    rows.Remove(prevRow);
+                    prevRow.Frozen = false;
+                    rows.Insert(index, prevRow);
+                    plantsDataGridView.ClearSelection();
+                    plantsDataGridView.Rows[index - 1].Selected = true;
+                }
+            }
+        }
 
-        ////Commands for "down" keypress. Moves column selection down one
-        //private void moveDown()
-        //{
-        //    if (plantsDataGridView.RowCount > 0)
-        //    {
-        //        if (plantsDataGridView.SelectedRows.Count > 0)
-        //        {
-        //            int rowCount = plantsDataGridView.Rows.Count;
-        //            int index = plantsDataGridView.SelectedCells[0].OwningRow.Index;
+        //Commands for "down" keypress. Moves column selection down one
+        private void moveDown()
+        {
+            if (plantsDataGridView.RowCount > 0)
+            {
+                if (plantsDataGridView.SelectedRows.Count > 0)
+                {
+                    int rowCount = plantsDataGridView.Rows.Count;
+                    int index = plantsDataGridView.SelectedCells[0].OwningRow.Index;
 
-        //            if (index == (rowCount - 2)) // include the header row
-        //            {
-        //                return;
-        //            }
-        //            DataGridViewRowCollection rows = plantsDataGridView.Rows;
+                    if (index == (rowCount - 2)) // include the header row
+                    {
+                        return;
+                    }
+                    DataGridViewRowCollection rows = plantsDataGridView.Rows;
 
-        //            // remove the next row and add it in front of the selected row.
-        //            DataGridViewRow nextRow = rows[index + 1];
-        //            rows.Remove(nextRow);
-        //            nextRow.Frozen = false;
-        //            rows.Insert(index, nextRow);
-        //            plantsDataGridView.ClearSelection();
-        //            plantsDataGridView.Rows[index + 1].Selected = true;
-        //        }
-        //    }
-        //}
-        //private void PopulateDataFromTable()
-        //{
-        //    //Selects plant and assigns plantID/textboxes/image from SQL table
-        //    plantSelected = true;
-        //    plantInfoDisplayForm.plantId = Convert.ToInt32(plantsDataGridView.CurrentRow.Cells[0].Value.ToString());
-        //    plantInfoDisplayForm.commonNameTextBox.Text = plantsDataGridView.CurrentRow.Cells[1].Value.ToString();
-        //    plantInfoDisplayForm.botanicalNameTextBox.Text = plantsDataGridView.CurrentRow.Cells[2].Value.ToString();
-        //    plantInfoDisplayForm.lightRequirementTextBox.Text = plantsDataGridView.CurrentRow.Cells[3].Value.ToString();
-        //    plantInfoDisplayForm.waterRequirementTextBox.Text = plantsDataGridView.CurrentRow.Cells[4].Value.ToString();
-        //    plantInfoDisplayForm.fertilizerRequirementTextBox.Text = plantsDataGridView.CurrentRow.Cells[5].Value.ToString();
-        //    plantInfoDisplayForm.moreInfoTextBox.Text = plantsDataGridView.CurrentRow.Cells[6].Value.ToString();
-        //    plantInfoDisplayForm.plantPictureBox.Image = byteArrayToImage((byte[])plantsDataGridView.CurrentRow.Cells[7].Value);
-        //    plantInfoEditForm.addPlantButton.Text = "Save";
+                    // remove the next row and add it in front of the selected row.
+                    DataGridViewRow nextRow = rows[index + 1];
+                    rows.Remove(nextRow);
+                    nextRow.Frozen = false;
+                    rows.Insert(index, nextRow);
+                    plantsDataGridView.ClearSelection();
+                    plantsDataGridView.Rows[index + 1].Selected = true;
+                }
+            }
+        }
 
-        //    //Pulls up plantInfoDisplayForm
-        //    this.Hide();
-        //    plantInfoDisplayForm.ShowDialog();
-        //    this.Close();
-        //}
+        private void PopulateDataFromTable()
+        {
+            //Selects plant and assigns plantID/textboxes/image from SQL table
+            plantSelected = true;
+            plantInfoDisplayForm.plantId = Convert.ToInt32(plantsDataGridView.CurrentRow.Cells[0].Value.ToString());
+            plantInfoDisplayForm.commonNameTextBox.Text = plantsDataGridView.CurrentRow.Cells[1].Value.ToString();
+            plantInfoDisplayForm.botanicalNameTextBox.Text = plantsDataGridView.CurrentRow.Cells[2].Value.ToString();
+            plantInfoDisplayForm.lightRequirementTextBox.Text = plantsDataGridView.CurrentRow.Cells[3].Value.ToString();
+            plantInfoDisplayForm.waterRequirementTextBox.Text = plantsDataGridView.CurrentRow.Cells[4].Value.ToString();
+            plantInfoDisplayForm.fertilizerRequirementTextBox.Text = plantsDataGridView.CurrentRow.Cells[5].Value.ToString();
+            plantInfoDisplayForm.moreInfoTextBox.Text = plantsDataGridView.CurrentRow.Cells[6].Value.ToString();
+            plantInfoDisplayForm.plantPictureBox.Image = byteArrayToImage((byte[])plantsDataGridView.CurrentRow.Cells[7].Value);
+            plantInfoEditForm.addPlantButton.Text = "Save";
 
-        //private void DeletePlant()
-        //{
-        //    //Deletes currently selected plant form list/datagridview using delete button from form
-        //    DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this plant entry?", "Delete Plant", MessageBoxButtons.YesNo);
-        //    if (dialogResult == DialogResult.Yes)
-        //    {
-        //        DataAccess db = new DataAccess();
-        //        db.DeletePlant(plantInfoEditForm.plantId);
-        //        MessageBox.Show("Plant Deleted Successfully");
-        //        UpdateBinding();
-        //        addNewButton.Text = "Add New";
-        //        deleteButton.Enabled = false;
-        //    }
-        //    else if (dialogResult == DialogResult.No)
-        //    {
-        //        return;
-        //    }
-        //}
+            //Pulls up plantInfoDisplayForm
+            this.Hide();
+            plantInfoDisplayForm.ShowDialog();
+            this.Close();
+        }
 
-        //private void OpenPlantInformationForm()
-        //{
-        //    // Closes current form and opens PlantInformationForm            
-        //    this.Hide();
-        //    plantInfoEditForm.ShowDialog();
-        //    this.Close();
-        //    plantSelected = false;
-        //}
+        private void DeletePlant()
+        {
+            //Deletes currently selected plant form list/datagridview using delete button from form
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this plant entry?", "Delete Plant", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                DataAccess db = new DataAccess();
+                db.DeletePlant(plantInfoEditForm.plantId);
+                MessageBox.Show("Plant Deleted Successfully");
+                UpdateBinding();
+                addNewButton.Text = "Add New";
+                deleteButton.Enabled = false;
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
+        }
 
-        ////Converts a Byte Array to image for display
-        //public Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
+        private void OpenPlantInformationForm()
+        {
+            // Closes current form and opens PlantInformationForm            
+            this.Hide();
+            plantInfoEditForm.ShowDialog();
+            this.Close();
+            plantSelected = false;
+        }
+
+        //Converts a Byte Array to image for display
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
 
         //Events
 
