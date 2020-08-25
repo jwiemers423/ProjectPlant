@@ -23,7 +23,7 @@ Plant Information Form Instructions
 * To return to the home screen, select the “Return Home” button or press the “End” key.
 
 Plant Information Add New/Edit Form
-* Simply add/edit details you want stored for a plant.
+* Add/edit details you want stored for a plant.
 * Add a .jpeg image of the plant by pressing the “Browse Image” button and selecting a desired picture saved on your device.
 * If editing an existing plant, the user can delete the profile by selecting the “Delete” button.
 * The user can return to the home screen by selecting “Return Home” or the “End” key.
