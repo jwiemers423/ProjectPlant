@@ -29,4 +29,5 @@ Plant Information Add New/Edit Form
 * The user can return to the home screen by selecting “Return Home” or the “End” key.
 
 Future Udpates:
+
 I plan to add a scheduling/calender funciton for fertilizers/waterings. The application should send notices to the user when they need to tend to their plants.
