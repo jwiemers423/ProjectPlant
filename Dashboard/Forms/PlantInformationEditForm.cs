@@ -78,10 +78,17 @@ namespace FormUI
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this plant entry?", "Delete Plant", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                MainForm mainForm = new MainForm();
                 PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
-                mainForm.DeletePlant();
-                plantInfoDisplayForm.ReturnHome();
+                DataAccess db = new DataAccess();
+                db.DeletePlant(plantId);
+                MessageBox.Show("Plant Deleted Successfully");
+                
+                deleteButton.Enabled = false;
+                var mainForm = new MainForm();
+                this.Hide();
+                mainForm.ShowDialog();
+                this.Close();
+                MainForm.plantSelected = false;
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -92,7 +99,11 @@ namespace FormUI
         private void homeButton_Click(object sender, EventArgs e)
         {
             PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
-            plantInfoDisplayForm.ReturnHome();
+            var mainForm = new MainForm();
+            this.Hide();
+            mainForm.ShowDialog();
+            this.Close();
+            MainForm.plantSelected = false;
         }
 
         private void browseImageButton_Click(object sender, EventArgs e)

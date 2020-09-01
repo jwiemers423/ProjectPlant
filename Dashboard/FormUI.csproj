@@ -68,6 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\MoveDown.cs" />
+    <Compile Include="Classes\MoveUp.cs" />
     <Compile Include="Forms\PlantInformationDisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,9 +140,7 @@
   <ItemGroup>
     <Content Include="ImagesAndIcons\leaf-nature-forest-brand-plant_icon-icons.com_59259 %281%29.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Library\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\PlantLibrary\PlantLibrary.csproj">
       <Project>{efe1d95e-b8a6-4d30-87bc-ed0a1a7053b2}</Project>

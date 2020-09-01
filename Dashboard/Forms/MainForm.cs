@@ -37,7 +37,6 @@ namespace FormUI
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this plant entry?", "Delete Plant", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
                 DeletePlant();
             }
             else if (dialogResult == DialogResult.No)
@@ -75,7 +74,7 @@ namespace FormUI
 
         private void plantsDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            //Deletes currnetly selected plant from list/datagridview using delete button from keyboard
+            //Deletes currently selected plant from list/datagridview using delete button from keyboard
             if (e.KeyCode == Keys.Delete)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this plant entry?", "Delete Plant", MessageBoxButtons.YesNo);
@@ -99,12 +98,12 @@ namespace FormUI
             //Changes which plant is currently selected with arrow keys on keyboard
             if (e.KeyCode == Keys.Up)
             {
-                moveUp();
+                MoveUp.moveUp();
             }
 
             if (e.KeyCode == Keys.Down)
             {
-                moveDown();
+                MoveDown.moveDown();
             }            
         }
 
@@ -144,62 +143,8 @@ namespace FormUI
             plantInfoEditForm.commonNameTextBox.Text = plantInfoEditForm.botanicalNameTextBox.Text = plantInfoEditForm.waterRequirementTextBox.Text =
                 plantInfoEditForm.lightRequirementTextBox.Text = plantInfoEditForm.fertilizerRequirementTextBox.Text = plantInfoEditForm.moreInfoTextBox.Text = "";
             plantInfoEditForm.plantPictureBox.Image = null;
-        }
-
-        //Commands for "up" keypress. Moves column selection up one
-        private void moveUp()
-        {
-            if (plantsDataGridView.RowCount > 0)
-            {
-                if (plantsDataGridView.SelectedRows.Count > 0)
-                {
-                    int rowCount = plantsDataGridView.Rows.Count;
-                    int index = plantsDataGridView.SelectedCells[0].OwningRow.Index;
-
-                    if (index == 0)
-                    {
-                        return;
-                    }
-                    DataGridViewRowCollection rows = plantsDataGridView.Rows;
-
-                    // remove the previous row and add it behind the selected row.
-                    DataGridViewRow prevRow = rows[index - 1];
-                    rows.Remove(prevRow);
-                    prevRow.Frozen = false;
-                    rows.Insert(index, prevRow);
-                    plantsDataGridView.ClearSelection();
-                    plantsDataGridView.Rows[index - 1].Selected = true;
-                }
-            }
-        }
-
-        //Commands for "down" keypress. Moves column selection down one
-        private void moveDown()
-        {
-            if (plantsDataGridView.RowCount > 0)
-            {
-                if (plantsDataGridView.SelectedRows.Count > 0)
-                {
-                    int rowCount = plantsDataGridView.Rows.Count;
-                    int index = plantsDataGridView.SelectedCells[0].OwningRow.Index;
-
-                    if (index == (rowCount - 2)) // include the header row
-                    {
-                        return;
-                    }
-                    DataGridViewRowCollection rows = plantsDataGridView.Rows;
-
-                    // remove the next row and add it in front of the selected row.
-                    DataGridViewRow nextRow = rows[index + 1];
-                    rows.Remove(nextRow);
-                    nextRow.Frozen = false;
-                    rows.Insert(index, nextRow);
-                    plantsDataGridView.ClearSelection();
-                    plantsDataGridView.Rows[index + 1].Selected = true;
-                }
-            }
-        }
-
+        }               
+      
         private void PopulateDataFromTable()
         {
             //Selects plant and assigns plantID/textboxes/image from SQL table
