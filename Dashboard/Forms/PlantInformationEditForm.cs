@@ -13,7 +13,7 @@ namespace FormUI
 {
     public partial class PlantInformationEditForm : Form
     {
-        public int plantId = 0;
+        public static int plantId = 0;
         public PlantInformationEditForm()
         {            
             InitializeComponent(); 
@@ -129,7 +129,6 @@ namespace FormUI
             // Closes current form and opens PlantINformationDisplayForm
             PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
 
-            plantInfoDisplayForm.plantId = plantId;
             plantInfoDisplayForm.commonNameTextBox.Text = commonNameTextBox.Text;
             plantInfoDisplayForm.botanicalNameTextBox.Text = botanicalNameTextBox.Text;
             plantInfoDisplayForm.waterRequirementTextBox.Text = waterRequirementTextBox.Text;

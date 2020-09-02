@@ -13,8 +13,6 @@ namespace FormUI
 {
     public partial class PlantInformationDisplayForm : Form
     {
-        public int plantId = 0;
-
         public PlantInformationDisplayForm()
         {
             InitializeComponent();
@@ -60,7 +58,6 @@ namespace FormUI
             MainForm.plantSelected = true;
             plantInfoForm.deleteButton.Enabled = true;
             plantInfoForm.addPlantButton.Text = "Save Edit";
-            plantInfoForm.plantId = plantId;
             plantInfoForm.commonNameTextBox.Text = commonNameTextBox.Text;
             plantInfoForm.botanicalNameTextBox.Text = botanicalNameTextBox.Text;
             plantInfoForm.waterRequirementTextBox.Text = waterRequirementTextBox.Text;

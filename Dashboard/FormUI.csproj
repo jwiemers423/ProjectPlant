@@ -29,7 +29,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -68,8 +68,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\MoveDown.cs" />
-    <Compile Include="Classes\MoveUp.cs" />
+    <Compile Include="Classes\CancelSelected.cs" />
+    <Compile Include="Classes\OpenNewForm.cs" />
+    <Compile Include="Classes\PopulateDataFromTable.cs" />
+    <Compile Include="Classes\Scroll.cs" />
+    <Compile Include="Classes\UpdateBinding.cs" />
     <Compile Include="Forms\PlantInformationDisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
