@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FormUI
@@ -19,6 +12,7 @@ namespace FormUI
             InitializeComponent(); 
         }
 
+        //Events
         private void addPlantButton_Click(object sender, EventArgs e)
         {
         byte[] img = null;
@@ -43,19 +37,21 @@ namespace FormUI
             //Decides if program should update an existing plant or save a new one          
             if (MainForm.plantSelected == true)
             {
-                img = imageToByteArray(plantPictureBox.Image);
+                img = ImageConverter.imageToByteArray(plantPictureBox.Image);
                 MessageBox.Show("Edit saved");
                 db.UpdatePlant(plantId, commonNameTextBox.Text, botanicalNameTextBox.Text,
                 lightRequirementTextBox.Text, waterRequirementTextBox.Text,
                 fertilizerRequirementTextBox.Text, moreInfoTextBox.Text, img);
-                ReturnToDisplay();
+                PlantInformationDisplayForm plantInformationDisplayForm = new PlantInformationDisplayForm();
+                OpenNewForm.editToDisplay(this, plantInformationDisplayForm);
             }
+
             else
             {
                 //Converts selected plant location and converts to image.
                 try
                 {
-                    PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
+                    PlantInformationDisplayForm plantInformationDisplayForm = new PlantInformationDisplayForm();
                     FileStream fs = new FileStream(plantPictureBox.ImageLocation, FileMode.Open, FileAccess.Read);
                     BinaryReader br = new BinaryReader(fs);
                     img = br.ReadBytes((int)fs.Length);
@@ -63,7 +59,7 @@ namespace FormUI
                     db.SavePlant(commonNameTextBox.Text, botanicalNameTextBox.Text,
                     lightRequirementTextBox.Text, waterRequirementTextBox.Text,
                     fertilizerRequirementTextBox.Text, moreInfoTextBox.Text, img);
-                    plantInfoDisplayForm.ReturnHome();
+                    OpenNewForm.editToDisplay(this, plantInformationDisplayForm);
                 }
                 catch
                 {
@@ -118,37 +114,9 @@ namespace FormUI
         {
             if (e.KeyCode == Keys.End)
             {
-                PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
-                plantInfoDisplayForm.ReturnHome();
+                PlantInformationDisplayForm plantInformationDisplayForm = new PlantInformationDisplayForm();
+                OpenNewForm.editToDisplay(this, plantInformationDisplayForm);
             }
-        }
-
-        //Methods
-        public void ReturnToDisplay()
-        {
-            // Closes current form and opens PlantINformationDisplayForm
-            PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
-
-            plantInfoDisplayForm.commonNameTextBox.Text = commonNameTextBox.Text;
-            plantInfoDisplayForm.botanicalNameTextBox.Text = botanicalNameTextBox.Text;
-            plantInfoDisplayForm.waterRequirementTextBox.Text = waterRequirementTextBox.Text;
-            plantInfoDisplayForm.lightRequirementTextBox.Text = lightRequirementTextBox.Text;
-            plantInfoDisplayForm.fertilizerRequirementTextBox.Text = fertilizerRequirementTextBox.Text;
-            plantInfoDisplayForm.moreInfoTextBox.Text = moreInfoTextBox.Text;
-            plantInfoDisplayForm.plantPictureBox.Image = plantPictureBox.Image;
-            plantInfoDisplayForm.editPlantButton.Text = "Edit Plant";
-
-            this.Hide();
-            plantInfoDisplayForm.ShowDialog();
-            this.Close();
-            MainForm.plantSelected = true;
-        }
-        public byte[] imageToByteArray(System.Drawing.Image imageIn)
-        {
-            //Converts an image stored in SQL to Byte Array for display
-            MemoryStream ms = new MemoryStream();
-            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
-            return ms.ToArray();
-        }
+        }       
     }
 }

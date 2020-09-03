@@ -11,25 +11,18 @@ namespace FormUI
 {
     public class PopulateDataFromTable
     {
-        public static void populateDataFromTable(DataGridView dataGridView, TextBox textBox1, TextBox textBox2, TextBox textBox3, TextBox textBox4,
-            TextBox textBox5, TextBox textBox6, PictureBox pictureBox)
+        public static void populateDataFromTable(DataGridView dataGridView, PlantInformationDisplayForm plantInformationDisplayForm)
         {
             //Selects plant and assigns plantID/textboxes/image from SQL table
             MainForm.plantSelected = true;
             PlantInformationEditForm.plantId = Convert.ToInt32(dataGridView.CurrentRow.Cells[0].Value.ToString());
-            textBox1.Text = dataGridView.CurrentRow.Cells[1].Value.ToString();
-            textBox2.Text = dataGridView.CurrentRow.Cells[2].Value.ToString();
-            textBox3.Text = dataGridView.CurrentRow.Cells[3].Value.ToString();
-            textBox4.Text = dataGridView.CurrentRow.Cells[4].Value.ToString();
-            textBox5.Text = dataGridView.CurrentRow.Cells[5].Value.ToString();
-            textBox6.Text = dataGridView.CurrentRow.Cells[6].Value.ToString();
-            pictureBox.Image = byteArrayToImage((byte[])dataGridView.CurrentRow.Cells[7].Value);
-        }
-        public static Image byteArrayToImage(byte[] byteArrayIn)
-        {
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-            Image returnImage = Image.FromStream(ms);
-            return returnImage;
+            plantInformationDisplayForm.commonNameTextBox.Text = dataGridView.CurrentRow.Cells[1].Value.ToString();
+            plantInformationDisplayForm.botanicalNameTextBox.Text = dataGridView.CurrentRow.Cells[2].Value.ToString();
+            plantInformationDisplayForm.waterRequirementTextBox.Text = dataGridView.CurrentRow.Cells[3].Value.ToString();
+            plantInformationDisplayForm.lightRequirementTextBox.Text = dataGridView.CurrentRow.Cells[4].Value.ToString();
+            plantInformationDisplayForm.fertilizerRequirementTextBox.Text = dataGridView.CurrentRow.Cells[5].Value.ToString();
+            plantInformationDisplayForm.moreInfoTextBox.Text = dataGridView.CurrentRow.Cells[6].Value.ToString();
+            plantInformationDisplayForm.plantPictureBox.Image = ImageConverter.byteArrayToImage((byte[])dataGridView.CurrentRow.Cells[7].Value);
         }
     }
 }

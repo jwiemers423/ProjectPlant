@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 
 namespace FormUI
 {
     public partial class MainForm : Form
-    {
-
-        public PlantInformationEditForm plantInfoEditForm = new PlantInformationEditForm();
-        public PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
+    {        
         public static bool plantSelected = false;
               
         public MainForm()
@@ -21,15 +15,14 @@ namespace FormUI
         }
 
         //Events
-
         private void searchButton_Click(object sender, EventArgs e)
         {
             //Filters plants in sql by what is entered in the searchbar textbox
             UpdateBinding.updateBinding(plantsDataGridView, searchTextBox);
             if (plantSelected == true)
             {
-                CancelSelected.cancelSelected(addNewButton, plantInfoEditForm.commonNameTextBox, plantInfoEditForm.botanicalNameTextBox, plantInfoEditForm.botanicalNameTextBox,
-                    plantInfoEditForm.lightRequirementTextBox, plantInfoEditForm.fertilizerRequirementTextBox, plantInfoEditForm.moreInfoTextBox, plantInfoEditForm.plantPictureBox);
+                PlantInformationEditForm plantInfoEditForm = new PlantInformationEditForm();
+                CancelSelected.cancelSelected(plantInfoEditForm);
             }
         }
 
@@ -38,7 +31,7 @@ namespace FormUI
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this plant entry?", "Delete Plant", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                DeletePlant();
+                DeletePlant.deletePlant(plantsDataGridView, searchTextBox, deleteButton);
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -48,8 +41,8 @@ namespace FormUI
         
         private void addNewButton_Click(object sender, EventArgs e)
         {
-            CancelSelected.cancelSelected(addNewButton, plantInfoEditForm.commonNameTextBox, plantInfoEditForm.botanicalNameTextBox, plantInfoEditForm.botanicalNameTextBox,
-                    plantInfoEditForm.lightRequirementTextBox, plantInfoEditForm.fertilizerRequirementTextBox, plantInfoEditForm.moreInfoTextBox, plantInfoEditForm.plantPictureBox);
+            PlantInformationEditForm plantInfoEditForm = new PlantInformationEditForm();
+            CancelSelected.cancelSelected(plantInfoEditForm);
             OpenNewForm.mainToEditForm(this, plantInfoEditForm);
         }
                
@@ -65,8 +58,8 @@ namespace FormUI
         }        
         private void plantsDataGridView_DoubleClick(object sender, EventArgs e)
         {
-            PopulateDataFromTable.populateDataFromTable(plantsDataGridView, plantInfoDisplayForm.commonNameTextBox, plantInfoDisplayForm.botanicalNameTextBox, plantInfoDisplayForm.botanicalNameTextBox,
-                    plantInfoDisplayForm.lightRequirementTextBox, plantInfoDisplayForm.fertilizerRequirementTextBox, plantInfoDisplayForm.moreInfoTextBox, plantInfoDisplayForm.plantPictureBox);
+            PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
+            PopulateDataFromTable.populateDataFromTable(plantsDataGridView, plantInfoDisplayForm);
 
             OpenNewForm.mainToDisplayForm(this, plantInfoDisplayForm);
         }
@@ -86,7 +79,7 @@ namespace FormUI
                 if (dialogResult == DialogResult.Yes)
                 {
                     PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
-                    DeletePlant();
+                    DeletePlant.deletePlant(plantsDataGridView, searchTextBox, deleteButton);
                 }
                 else if (dialogResult == DialogResult.No)
                 {
@@ -97,8 +90,8 @@ namespace FormUI
             //Move into PlantInfoDisplay for selected plant
             if (e.KeyCode == Keys.Enter)
             {
-                PopulateDataFromTable.populateDataFromTable(plantsDataGridView, plantInfoDisplayForm.commonNameTextBox, plantInfoDisplayForm.botanicalNameTextBox, plantInfoDisplayForm.botanicalNameTextBox,
-                    plantInfoDisplayForm.lightRequirementTextBox, plantInfoDisplayForm.fertilizerRequirementTextBox, plantInfoDisplayForm.moreInfoTextBox, plantInfoDisplayForm.plantPictureBox);
+                PlantInformationDisplayForm plantInfoDisplayForm = new PlantInformationDisplayForm();
+                PopulateDataFromTable.populateDataFromTable(plantsDataGridView, plantInfoDisplayForm);
 
                 this.Hide();
                 plantInfoDisplayForm.ShowDialog();
@@ -114,30 +107,7 @@ namespace FormUI
             if (e.KeyCode == Keys.Down)
             {
                 ScrollDGV.moveDown(plantsDataGridView);
-            }            
+            }
         }
-
-        //Methods
-
-        public void DeletePlant()
-        {
-            //Deletes currently selected plant form list/datagridview using delete button from form 
-            DataAccess db = new DataAccess();
-            db.DeletePlant(PlantInformationEditForm.plantId);
-            MessageBox.Show("Plant Deleted Successfully");
-            UpdateBinding.updateBinding(plantsDataGridView, searchTextBox);
-            addNewButton.Text = "Add New";
-            deleteButton.Enabled = false;
-        }
-
-       
-
-        //Converts a Byte Array to image for display
-        //public Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
     }
 }

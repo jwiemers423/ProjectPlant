@@ -9,15 +9,14 @@ namespace FormUI
 {
     public class CancelSelected
     {
-        public static void cancelSelected( Button addNewButton, TextBox textBox1, TextBox textBox2, TextBox textBox3, TextBox textBox4,
-            TextBox textBox5, TextBox textBox6, PictureBox pictureBox)
+        public static void cancelSelected( PlantInformationEditForm plantInformationEditForm)
         {
             //Clears data so a clean form will be opened
             MainForm.plantSelected = false;
-            addNewButton.Text = "Add New";
             PlantInformationEditForm.plantId = 0;
-            textBox1.Text = textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = textBox6.Text = "";
-            pictureBox.Image = null;
+            plantInformationEditForm.commonNameTextBox.Text = plantInformationEditForm.botanicalNameTextBox.Text = plantInformationEditForm.waterRequirementTextBox.Text =
+                    plantInformationEditForm.lightRequirementTextBox.Text = plantInformationEditForm.fertilizerRequirementTextBox.Text = plantInformationEditForm.moreInfoTextBox.Text =  "";
+            plantInformationEditForm.plantPictureBox.Image = null;
         }
     }
 }
